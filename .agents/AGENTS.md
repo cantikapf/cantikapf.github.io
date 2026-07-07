@@ -155,6 +155,69 @@ Commit message conventions:
 
 ---
 
+## Panduan Edit Menu dan Halaman (Menu & Page Edit Guide)
+
+### 1. Cara Mengedit Menu Navigasi (Navbar)
+Menu navigasi didefinisikan menggunakan Bootstrap navbar pada bagian `<header>` di setiap file HTML utama. Karena website ini adalah static HTML, **perubahan menu harus dilakukan secara manual di semua file HTML berikut**:
+- [index.html](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/index.html)
+- [works.html](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/works.html)
+- [experience.html](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/experience.html)
+- [certification.html](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/certification.html)
+- [projects.html](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/projects.html)
+- [about.html](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/about.html)
+- [contact.html](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/contact.html)
+- [detail.html](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/detail.html)
+
+#### Struktur Kode Navbar:
+```html
+<ul class="nav navbar-nav ">
+  <li><a href="./index.html" title="">01 : Home</a></li>
+  <li><a href="./works.html" title="">02 : Research</a></li>
+  <li><a href="./experience.html" title="">03 : Work Experience</a></li>
+  <li><a href="./certification.html" title="">04 : Certification</a></li>
+  <li><a href="./projects.html" title="">05 : Projects</a></li>
+  <li><a href="./about.html" title="">06 : About me</a></li>
+  <li><a href="./contact.html" title="">07 : Contact</a></li>
+</ul>
+```
+*Catatan: Pastikan nomor indeks menu (`01 : Home`, `02 : Research`, dst.) dan tautan (`href`) konsisten di seluruh halaman.*
+
+---
+
+### 2. Cara Mengedit Halaman (Pages)
+
+Ada 2 jenis halaman di website ini:
+
+#### A. Halaman Statis (`index.html`, `about.html`, `contact.html`)
+Untuk mengedit konten pada halaman-halaman ini, edit langsung file HTML-nya:
+- **Home (`index.html`):** Untuk mengubah teks perkenalan dinamis (typing effect), edit elemen `<span id="typed-strings">`:
+  ```html
+  <span id="typed-strings">
+    <span>I am Cantika</span>
+    <span>Majoring in International Relations</span>
+    <span>Interested in IR affairs and big data</span>
+  </span>
+  ```
+- **About (`about.html`):** Edit teks biografi, keahlian, atau pendidikan langsung pada struktur grid HTML-nya.
+- **Contact (`contact.html`):** Edit alamat email, link media sosial, atau form kontak di dalam HTML.
+
+#### B. Halaman Karusel / Seksi (`works.html`, `experience.html`, `certification.html`, `projects.html`)
+Halaman ini menggunakan slider karusel Bootstrap (3 kartu per slide) yang berfungsi sebagai galeri portfolio. 
+- Jika ingin menambah/menghapus/mengubah kartu preview di halaman ini, edit struktur HTML kartu di file yang bersangkutan (lihat **Workflow: Adding a New Item - STEP 3**).
+- Kartu ini mengarahkan ke halaman detail dengan format link: `./detail.html?type=<TYPE>&id=<ID>`.
+
+#### C. Halaman Detail Dinamis (`detail.html` & `assets/js/data.js`)
+Konten halaman detail tidak dibuat terpisah satu per satu, melainkan di-render secara dinamis oleh `detail.html` berdasarkan parameter `type` dan `id` di URL.
+- Konten sesungguhnya disimpan sebagai string HTML di dalam variabel `portfolioData` di file [data.js](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/assets/js/data.js).
+- **Cara Mengedit Detail Halaman:**
+  1. Buka [assets/js/data.js](file:///D:/PERSONAL%20PROJECT/cantikapf.github.io/assets/js/data.js).
+  2. Cari kategori (`certification`, `experience`, `works`, atau `projects`).
+  3. Temukan ID item yang ingin diedit (misal: `project5`).
+  4. Edit string HTML pada properti `content`.
+  5. Edit properti `title` jika ingin mengubah judul tab browser ketika halaman tersebut dibuka.
+
+---
+
 ## Rules (Must Follow Always)
 
 1. **NEVER use AI-generated images as project thumbnails.** Always use a real screenshot via Playwright.
