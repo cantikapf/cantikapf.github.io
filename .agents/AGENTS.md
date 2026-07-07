@@ -36,7 +36,7 @@ The portfolio is a static HTML/JS site. All page **content** is stored in a sing
 | Research | `works` | `work`, `work2`, `work3`, ... | 3 items |
 | Work Experience | `experience` | `experience1`, `experience2`, ... | 5 real + 1 "coming soon" |
 | Certification | `certification` | `certification1`, `certification2`, ... | 1 real + 5 "coming soon" |
-| Projects | `projects` | `project1`, `project2`, ... | 5 real items |
+| Projects | `projects` | `project1`, `project2`, ... | 6 real items |
 
 ---
 
