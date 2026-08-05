@@ -179,6 +179,8 @@ window.CMS.Core = (function () {
         breadcrumb.innerHTML = '<span>Media Manager</span>';
       } else if (page === 'export') {
         breadcrumb.innerHTML = '<span>Export & Deploy</span>';
+      } else if (page === 'auditlog') {
+        breadcrumb.innerHTML = '<span>Audit Log</span>';
       }
     }
 
@@ -201,6 +203,10 @@ window.CMS.Core = (function () {
     } else if (page === 'export') {
       if (window.CMS.GitHubAPI) {
         window.CMS.GitHubAPI.render(document.getElementById('page-export'));
+      }
+    } else if (page === 'auditlog') {
+      if (window.CMS.AuditLog) {
+        window.CMS.AuditLog.render(document.getElementById('page-auditlog'));
       }
     }
   }
@@ -353,6 +359,10 @@ window.CMS.Core = (function () {
           <span class="cms-nav-icon">🖼️</span>
           Media Manager
         </button>
+        <button class="cms-nav-item" data-page="auditlog" onclick="CMS.Core.navigateTo('auditlog')">
+          <span class="cms-nav-icon">📜</span>
+          Audit Log
+        </button>
         <button class="cms-nav-item" data-page="export" onclick="CMS.Core.navigateTo('export')">
           <span class="cms-nav-icon">📦</span>
           Export & Deploy
@@ -410,6 +420,7 @@ window.CMS.Core = (function () {
     if (window.CMS.CardManager) window.CMS.CardManager.init();
     if (window.CMS.Editor) window.CMS.Editor.init();
     if (window.CMS.GitHubAPI) window.CMS.GitHubAPI.init();
+    if (window.CMS.AuditLog) window.CMS.AuditLog.init();
 
     // Navigate to dashboard
     navigateTo('dashboard');
