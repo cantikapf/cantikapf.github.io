@@ -28,10 +28,10 @@ window.CMS.CardManager = (function () {
     ],
     works: [
       { id: 'work', title: 'Indonesia Parliamentary Diplomacy', subtitle: 'Parliamentary Diplomacy', thumb: './assets/images/work01-hover.jpg' },
-      { id: 'work2', title: 'Shinzo Abe Leadership Style', subtitle: 'Foreign Policy Analysis', thumb: './assets/images/work01-hover.jpg' },
-      { id: 'work3', title: "Japan's Role in East Asia", subtitle: 'Regional Economic Integration', thumb: './assets/images/work01-hover.jpg' },
-      { id: 'work4', title: "Neo-Liberal Approach in China's Development", subtitle: 'Challenges and Opportunities', thumb: './assets/images/work02-hover.jpg' },
-      { id: 'work5', title: "Unveiling China's Transformation", subtitle: 'Globalization & State-Society', thumb: './assets/images/work03-hover.jpg' },
+      { id: 'work2', title: 'Shinzo Abe Leadership Style', subtitle: 'Foreign Policy Analysis', thumb: './assets/images/porto02-hover.jpg' },
+      { id: 'work3', title: "Japan's Role in East Asia", subtitle: 'Regional Economic Integration', thumb: './assets/images/japan.jpg' },
+      { id: 'work4', title: "Neo-Liberal Approach in China's Development", subtitle: 'Challenges and Opportunities', thumb: 'https://miro.medium.com/v2/resize:fit:1100/0*80aWZYHSF1arRYdM' },
+      { id: 'work5', title: "Unveiling China's Transformation", subtitle: 'Globalization & State-Society', thumb: 'https://miro.medium.com/v2/resize:fit:828/0*57Rm1Fo2i2LyakuL' },
       { id: 'work6', title: 'Coming soon.', subtitle: '-', thumb: './assets/images/coming-soon.jpg', placeholder: true },
     ],
     certification: [
@@ -48,7 +48,12 @@ window.CMS.CardManager = (function () {
 
   function init() {
     // Store card metadata in state for export
-    window.CMS.state.carouselCards = JSON.parse(JSON.stringify(CARD_META));
+    // If cardData was saved in data.js during a previous deploy, use it
+    if (window.cardData) {
+      window.CMS.state.carouselCards = JSON.parse(JSON.stringify(window.cardData));
+    } else {
+      window.CMS.state.carouselCards = JSON.parse(JSON.stringify(CARD_META));
+    }
   }
 
   /* ---- Render section page ---- */
