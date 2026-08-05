@@ -274,9 +274,9 @@ window.CMS.GitHubAPI = (function() {
                     </div>
                 </div>
 
-                <div class="cms-diff" style="margin-top: 30px;">
+                <div class="cms-diff" style="margin-top: 30px; max-width: 100%;">
                     <h3>Preview Changes (data.js)</h3>
-                    <pre id="cms-diff-preview" class="cms-diff-content cms-diff-add" style="background: #f4f4f4; padding: 15px; border-left: 4px solid #4CAF50; overflow-x: auto;"></pre>
+                    <pre id="cms-diff-preview" class="cms-diff-content cms-diff-add" style="background: #f4f4f4; padding: 15px; border-left: 4px solid #4CAF50; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; max-width: 100%;"></pre>
                 </div>
             </div>
         `;
