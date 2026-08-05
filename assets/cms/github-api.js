@@ -80,29 +80,77 @@ window.CMS.GitHubAPI = (function() {
         return jsString;
     }
 
-    function generateHTMLFiles() {
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    async function generateHTMLFiles() {
         const files = {};
-        if (window.CMS.state && window.CMS.state.htmlTemplates && window.CMS.state.carouselCards) {
+        if (window.CMS.state && window.CMS.state.carouselCards) {
+            window.CMS.state.htmlTemplates = window.CMS.state.htmlTemplates || {};
             const sections = ['certification', 'experience', 'projects', 'works'];
-            sections.forEach(section => {
-                if (window.CMS.state.htmlTemplates[section] && window.CMS.state.carouselCards[section]) {
-                    // Replace the inner content for carousel with the new cards HTML.
-                    let template = window.CMS.state.htmlTemplates[section];
-                    let cardsHtml = window.CMS.state.carouselCards[section].join('\n');
-                    
-                    const startMarker = '<div class="carousel-inner">';
-                    const endMarker = '<!--/carousel-inner-->';
-                    
-                    if (template.includes(startMarker) && template.includes(endMarker)) {
-                        const before = template.split(startMarker)[0];
-                        const after = template.split(endMarker)[1];
-                        files[`${section}.html`] = before + startMarker + '\n' + cardsHtml + '\n        </div>\n        ' + endMarker + after;
-                    } else {
-                        // Fallback replacement if no comments exist
-                        files[`${section}.html`] = template;
+            
+            for (const section of sections) {
+                if (window.CMS.state.carouselCards[section]) {
+                    // Fetch template if not already present
+                    if (!window.CMS.state.htmlTemplates[section]) {
+                        try {
+                            const res = await fetch(`./${section}.html?v=${Date.now()}`);
+                            if (res.ok) {
+                                window.CMS.state.htmlTemplates[section] = await res.text();
+                            }
+                        } catch (e) {
+                            console.error(`Failed to fetch ${section}.html`, e);
+                        }
+                    }
+
+                    if (window.CMS.state.htmlTemplates[section]) {
+                        let template = window.CMS.state.htmlTemplates[section];
+                        const cards = window.CMS.state.carouselCards[section];
+                        
+                        let finalCardsHtml = '';
+                        for (let i = 0; i < cards.length; i += 3) {
+                            let slide = cards.slice(i, i + 3);
+                            finalCardsHtml += `            <div class="item ${i === 0 ? 'active' : ''}">\n                <div class="row">\n`;
+                            for (let j = 0; j < slide.length; j++) {
+                                const card = slide[j];
+                                const cardIdx = i + j + 1;
+                                const total = cards.length;
+                                
+                                finalCardsHtml += `                    <div class="col-sm-4">
+                      <a href="./detail.html?type=${section}&id=${card.id}" title="" class="black-image-project-hover">
+                        <img src="${card.thumb}" alt="${escapeHtml(card.title)}" class="img-responsive" style="aspect-ratio: 770/498; object-fit: cover; width: 100%;">
+                      </a>
+                      <div class="card-container card-container-lg">
+                        <h4>${String(cardIdx).padStart(3, '0')}/${String(total).padStart(3, '0')}</h4>
+                        <h3>${escapeHtml(card.title)}</h3>
+                        <p>${escapeHtml(card.subtitle)}</p>
+                        <a href="./detail.html?type=${section}&id=${card.id}" title="" class="btn btn-default">Discover</a>
+                      </div>
+                    </div>\n`;
+                            }
+                            finalCardsHtml += `                </div>\n            </div>\n`;
+                        }
+                        
+                        const startMarker = '<div class="carousel-inner">';
+                        const endMarker = '<!--/carousel-inner-->';
+                        
+                        if (template.includes(startMarker) && template.includes(endMarker)) {
+                            const before = template.split(startMarker)[0];
+                            const after = template.split(endMarker)[1];
+                            files[`${section}.html`] = before + startMarker + '\n' + finalCardsHtml + '        ' + endMarker + after;
+                        } else {
+                            files[`${section}.html`] = template;
+                        }
                     }
                 }
-            });
+            }
         }
         return files;
     }
@@ -123,7 +171,7 @@ window.CMS.GitHubAPI = (function() {
             }
 
             // Add HTML files
-            const htmlFiles = generateHTMLFiles();
+            const htmlFiles = await generateHTMLFiles();
             Object.keys(htmlFiles).forEach(filename => {
                 zip.file(filename, htmlFiles[filename]);
             });
@@ -185,7 +233,7 @@ window.CMS.GitHubAPI = (function() {
             }
 
             // Add HTML files
-            const htmlFiles = generateHTMLFiles();
+            const htmlFiles = await generateHTMLFiles();
             Object.keys(htmlFiles).forEach(filename => {
                 filesToCommit.push({
                     path: filename,
@@ -236,6 +284,13 @@ window.CMS.GitHubAPI = (function() {
             }
 
             if (window.CMS.toast) window.CMS.toast(`Successfully pushed ${commitSuccessCount} files to GitHub! 🚀`, 'success');
+            
+            // Clear pending changes state
+            if (window.CMS.state) {
+                window.CMS.state.pendingChanges = false;
+                const dots = document.querySelectorAll('.cms-pending-indicator');
+                dots.forEach(d => d.style.display = 'none');
+            }
         } catch (error) {
             console.error('GitHub Push Error:', error);
             if (window.CMS.toast) window.CMS.toast(`Push failed: ${error.message}`, 'error');
@@ -368,6 +423,8 @@ window.CMS.GitHubAPI = (function() {
         generateDataJS: generateDataJS,
         downloadZip: downloadZip,
         pushToGitHub: pushToGitHub,
-        isConnected: function() { return isConnected; }
+        isConnected: function() { return isConnected; },
+        apiRequest: apiRequest,
+        getBranch: function() { return BRANCH; }
     };
 })();
