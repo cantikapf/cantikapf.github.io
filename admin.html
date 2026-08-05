@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="Portfolio CMS - Admin Panel" name="description">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Portfolio CMS — Admin</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
+  <link href="./assets/cms/cms.css" rel="stylesheet">
+</head>
+<body class="cms-body">
+
+  <!-- Login Overlay -->
+  <div class="cms-login-overlay" id="cms-login-overlay">
+    <div class="cms-login-card">
+      <div style="font-size: 40px; margin-bottom: 16px;">🔐</div>
+      <h1>Portfolio CMS</h1>
+      <p>Masukkan password untuk mengakses admin panel</p>
+      <div class="cms-login-error" id="cms-login-error"></div>
+      <input type="password" id="cms-login-password" placeholder="Password"
+             onkeydown="if(event.key==='Enter') CMS.handleLogin()">
+      <button class="cms-btn cms-btn-primary cms-btn-lg" style="width: 100%; justify-content: center;"
+              onclick="CMS.handleLogin()">
+        Masuk
+      </button>
+      <div style="margin-top: 24px; font-size: 12px; color: var(--cms-text-muted);">
+        cantikapf.github.io CMS
+      </div>
+    </div>
+  </div>
+
+  <!-- CMS Layout -->
+  <div class="cms-layout">
+
+    <!-- Sidebar -->
+    <aside class="cms-sidebar" id="cms-sidebar">
+      <div class="cms-sidebar-brand">
+        <div class="cms-sidebar-brand-icon">✨</div>
+        <div>
+          <h2>Portfolio CMS</h2>
+          <small>cantikapf.github.io</small>
+        </div>
+      </div>
+      <nav class="cms-sidebar-nav" id="cms-sidebar-nav">
+        <!-- Sidebar nav items will be rendered by cms.js -->
+      </nav>
+      <div style="padding: 16px 12px; border-top: 1px solid var(--cms-border);">
+        <div style="font-size: 11px; color: var(--cms-text-muted); text-align: center;">
+          v1.0 · Client-Side CMS
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="cms-main">
+
+      <!-- Header -->
+      <header class="cms-header">
+        <div class="cms-header-left">
+          <button class="cms-mobile-toggle" id="cms-mobile-toggle">☰</button>
+          <div class="cms-header-breadcrumb" id="cms-breadcrumb">
+            <span>Dashboard</span>
+          </div>
+        </div>
+        <div class="cms-header-right">
+          <span class="cms-pending-indicator cms-pending-dot" style="display:none" title="Ada perubahan yang belum di-export"></span>
+          <button class="cms-btn cms-btn-sm cms-btn-secondary" onclick="CMS.Core.navigateTo('export')" title="Export & Deploy">
+            📦 Export
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="cms-content">
+        <!-- Dashboard Page -->
+        <div class="cms-page active" id="page-dashboard">
+          <div style="text-align: center; padding: 60px 20px; color: var(--cms-text-muted);">
+            <div class="cms-spinner"></div>
+            <p style="margin-top: 16px;">Memuat data portfolio...</p>
+          </div>
+        </div>
+
+        <!-- Section Manager Page -->
+        <div class="cms-page" id="page-section">
+          <!-- Content rendered by card-manager.js -->
+        </div>
+
+        <!-- Media Manager Page -->
+        <div class="cms-page" id="page-media">
+          <!-- Content rendered by media-manager.js -->
+        </div>
+
+        <!-- Export Page -->
+        <div class="cms-page" id="page-export">
+          <!-- Content rendered by github-api.js -->
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="cms-toast-container" id="cms-toast-container"></div>
+
+  <!-- Load data.js first (provides portfolioData global) -->
+  <script src="./assets/js/data.js"></script>
+
+  <!-- JSZip CDN for ZIP generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <!-- CMS Modules -->
+  <script src="./assets/cms/cms.js"></script>
+  <script src="./assets/cms/media-manager.js"></script>
+  <script src="./assets/cms/card-manager.js"></script>
+  <script src="./assets/cms/editor.js"></script>
+  <script src="./assets/cms/github-api.js"></script>
+
+</body>
+</html>
