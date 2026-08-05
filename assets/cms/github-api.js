@@ -261,18 +261,18 @@ window.CMS.GitHubAPI = (function() {
                     </div>
                 </div>
 
-                <div class="cms-export-options" style="display: flex; gap: 20px; margin-top: 20px;">
-                    <div class="cms-export-card" id="cms-export-zip" style="flex: 1; padding: 20px; border: 1px solid #ccc; text-align: center;">
-                        <div class="cms-export-card-icon" style="font-size: 2em;">📦</div>
-                        <h3>Download ZIP</h3>
+                <div class="cms-export-options">
+                    <div class="cms-export-card" id="cms-export-zip">
+                        <div class="cms-export-card-icon">📦</div>
+                        <h4>Download ZIP</h4>
                         <p>Download all updated files to your local machine.</p>
-                        <button class="cms-btn cms-btn-lg cms-btn-secondary">Download</button>
+                        <button class="cms-btn cms-btn-lg cms-btn-secondary" style="width:100%">Download</button>
                     </div>
-                    <div class="cms-export-card ${!isConnected ? 'disabled' : ''}" id="cms-export-github" style="flex: 1; padding: 20px; border: 1px solid #ccc; text-align: center; opacity: ${isConnected ? '1' : '0.5'};">
-                        <div class="cms-export-card-icon" style="font-size: 2em;">🔗</div>
-                        <h3>Push to GitHub</h3>
+                    <div class="cms-export-card ${!isConnected ? 'disabled' : ''}" id="cms-export-github" style="opacity: ${isConnected ? '1' : '0.5'};">
+                        <div class="cms-export-card-icon">🔗</div>
+                        <h4>Push to GitHub</h4>
                         <p>Commit and push changes directly to main branch.</p>
-                        <button class="cms-btn cms-btn-lg cms-btn-success" ${!isConnected ? 'disabled' : ''}>Deploy Now</button>
+                        <button class="cms-btn cms-btn-lg cms-btn-success" style="width:100%" ${!isConnected ? 'disabled' : ''}>Deploy Now</button>
                     </div>
                 </div>
 
