@@ -197,8 +197,7 @@ const cardData = {
       "id": "work",
       "title": "Indonesia Parliamentary Diplomacy",
       "subtitle": "Parliamentary Diplomacy",
-      "thumb": "./assets/images/dpr-ri.jpg",
-      "placeholder": false
+      "thumb": "./assets/images/work01-hover.jpg"
     },
     {
       "id": "work2",
