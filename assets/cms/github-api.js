@@ -90,17 +90,15 @@ window.CMS.GitHubAPI = (function() {
                     let template = window.CMS.state.htmlTemplates[section];
                     let cardsHtml = window.CMS.state.carouselCards[section].join('\n');
                     
-                    const startMarker = '<!-- CMS_CARDS_START -->';
-                    const endMarker = '<!-- CMS_CARDS_END -->';
+                    const startMarker = '<div class="carousel-inner">';
+                    const endMarker = '<!--/carousel-inner-->';
                     
                     if (template.includes(startMarker) && template.includes(endMarker)) {
                         const before = template.split(startMarker)[0];
                         const after = template.split(endMarker)[1];
-                        files[`${section}.html`] = before + startMarker + '\n' + cardsHtml + '\n' + endMarker + after;
+                        files[`${section}.html`] = before + startMarker + '\n' + cardsHtml + '\n        </div>\n        ' + endMarker + after;
                     } else {
                         // Fallback replacement if no comments exist
-                        // Assuming the cards are inside <div class="carousel-inner"> or similar wrapper
-                        // For simplicity in a general scenario without exact DOM parsing, we just return the templates as-is if no marker.
                         files[`${section}.html`] = template;
                     }
                 }
