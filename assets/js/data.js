@@ -112,3 +112,167 @@ const portfolioData = {
     }
   }
 };
+
+
+const cardData = {
+  "projects": [
+    {
+      "id": "project1",
+      "title": "Tangsel Coffeeshop Business",
+      "subtitle": "2026",
+      "thumb": "./assets/images/project1.png"
+    },
+    {
+      "id": "project2",
+      "title": "My Digital Academy 2025",
+      "subtitle": "Jun 2025 - Jul 2025",
+      "thumb": "./assets/images/project2.png"
+    },
+    {
+      "id": "project3",
+      "title": "Indonesia's Export Destination",
+      "subtitle": "Jul 2024",
+      "thumb": "./assets/images/project3.png"
+    },
+    {
+      "id": "project4",
+      "title": "IR Study Companion",
+      "subtitle": "Jan 2023 - Jan 2024",
+      "thumb": "./assets/images/project4.png"
+    },
+    {
+      "id": "project5",
+      "title": "WhatBusinessInTangsel",
+      "subtitle": "2026",
+      "thumb": "./assets/images/project5.png"
+    },
+    {
+      "id": "project6",
+      "title": "IPU144 Sentiment Analysis",
+      "subtitle": "2023",
+      "thumb": "./assets/images/project6.png"
+    }
+  ],
+  "experience": [
+    {
+      "id": "experience1",
+      "title": "PT Bank Mandiri (Persero) Tbk.",
+      "subtitle": "Dec 2016 - Mar 2017",
+      "thumb": "./assets/images/experience-01.jpg"
+    },
+    {
+      "id": "experience2",
+      "title": "Dewan Perwakilan Rakyat RI",
+      "subtitle": "Feb 2021 - Jun 2021",
+      "thumb": "./assets/images/dpr-ri.jpg"
+    },
+    {
+      "id": "experience3",
+      "title": "Lembaga Pembiayaan Ekspor Indonesia",
+      "subtitle": "Jun 2023 - Aug 2023",
+      "thumb": "./assets/images/lpei.jpg"
+    },
+    {
+      "id": "experience4",
+      "title": "PT Sumberdaya Andalan Mandiri",
+      "subtitle": "Aug 2023 - Jan 2025",
+      "thumb": "./assets/images/work001-01.jpg"
+    },
+    {
+      "id": "experience5",
+      "title": "PT Bank Mandiri (Persero) Tbk.",
+      "subtitle": "Apr 2025 - Jul 2025",
+      "thumb": "./assets/images/bank-mandiri.jpg"
+    },
+    {
+      "id": "experience6",
+      "title": "Coming soon.",
+      "subtitle": "-",
+      "thumb": "./assets/images/coming-soon.jpg",
+      "placeholder": true
+    }
+  ],
+  "works": [
+    {
+      "id": "work",
+      "title": "Indonesia Parliamentary Diplomacy",
+      "subtitle": "Parliamentary Diplomacy",
+      "thumb": "./assets/images/dpr-ri.jpg",
+      "placeholder": false
+    },
+    {
+      "id": "work2",
+      "title": "Shinzo Abe Leadership Style",
+      "subtitle": "Foreign Policy Analysis",
+      "thumb": "./assets/images/porto02-hover.jpg"
+    },
+    {
+      "id": "work3",
+      "title": "Japan's Role in East Asia",
+      "subtitle": "Regional Economic Integration",
+      "thumb": "./assets/images/japan.jpg"
+    },
+    {
+      "id": "work4",
+      "title": "Neo-Liberal Approach in China's Development",
+      "subtitle": "Challenges and Opportunities",
+      "thumb": "https://miro.medium.com/v2/resize:fit:1100/0*80aWZYHSF1arRYdM"
+    },
+    {
+      "id": "work5",
+      "title": "Unveiling China's Transformation",
+      "subtitle": "Globalization & State-Society",
+      "thumb": "https://miro.medium.com/v2/resize:fit:828/0*57Rm1Fo2i2LyakuL"
+    },
+    {
+      "id": "work6",
+      "title": "Coming soon.",
+      "subtitle": "-",
+      "thumb": "./assets/images/coming-soon.jpg",
+      "placeholder": true
+    }
+  ],
+  "certification": [
+    {
+      "id": "certification1",
+      "title": "English Proficiency Online Test",
+      "subtitle": "2021",
+      "thumb": "./assets/images/work001-01.jpg"
+    },
+    {
+      "id": "certification2",
+      "title": "Coming soon.",
+      "subtitle": "-",
+      "thumb": "./assets/images/coming-soon.jpg",
+      "placeholder": true
+    },
+    {
+      "id": "certification3",
+      "title": "Coming soon.",
+      "subtitle": "-",
+      "thumb": "./assets/images/coming-soon.jpg",
+      "placeholder": true
+    },
+    {
+      "id": "certification4",
+      "title": "Coming soon.",
+      "subtitle": "-",
+      "thumb": "./assets/images/coming-soon.jpg",
+      "placeholder": true
+    },
+    {
+      "id": "certification5",
+      "title": "Coming soon.",
+      "subtitle": "-",
+      "thumb": "./assets/images/coming-soon.jpg",
+      "placeholder": true
+    },
+    {
+      "id": "certification6",
+      "title": "Coming soon.",
+      "subtitle": "-",
+      "thumb": "./assets/images/coming-soon.jpg",
+      "placeholder": true
+    }
+  ]
+};
