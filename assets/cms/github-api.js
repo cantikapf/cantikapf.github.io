@@ -180,12 +180,22 @@ window.CMS.GitHubAPI = (function() {
             if (window.CMS.MediaManager && typeof window.CMS.MediaManager.getPendingImages === 'function') {
                 const pendingImages = window.CMS.MediaManager.getPendingImages();
                 pendingImages.forEach(img => {
+                    // Export original high-res image
                     let data = img.dataUrl;
                     if (data && data.includes(',')) {
                         data = data.split(',')[1];
                     }
                     if (data) {
                         zip.file(`assets/images/${img.filename}`, data, {base64: true});
+                    }
+
+                    // Export low-res thumbnail image
+                    let thumbData = img.thumbDataUrl || img.dataUrl;
+                    if (thumbData && thumbData.includes(',')) {
+                        thumbData = thumbData.split(',')[1];
+                    }
+                    if (thumbData) {
+                        zip.file(`assets/images/thumbs/${img.filename}`, thumbData, {base64: true});
                     }
                 });
             }
@@ -245,12 +255,25 @@ window.CMS.GitHubAPI = (function() {
             if (window.CMS.MediaManager && typeof window.CMS.MediaManager.getPendingImages === 'function') {
                 const pendingImages = window.CMS.MediaManager.getPendingImages();
                 pendingImages.forEach(img => {
-                    let data = img.data;
-                    if (data.includes(',')) data = data.split(',')[1];
-                    filesToCommit.push({
-                        path: img.path,
-                        content: data
-                    });
+                    // Push original high-res image
+                    let origData = img.dataUrl || img.data;
+                    if (origData && origData.includes(',')) origData = origData.split(',')[1];
+                    if (origData) {
+                        filesToCommit.push({
+                            path: `./assets/images/${img.filename}`.replace(/^\.\//, ''),
+                            content: origData
+                        });
+                    }
+
+                    // Push low-res thumbnail image
+                    let thumbData = img.thumbDataUrl || origData;
+                    if (thumbData && thumbData.includes(',')) thumbData = thumbData.split(',')[1];
+                    if (thumbData) {
+                        filesToCommit.push({
+                            path: `assets/images/thumbs/${img.filename}`,
+                            content: thumbData
+                        });
+                    }
                 });
             }
 

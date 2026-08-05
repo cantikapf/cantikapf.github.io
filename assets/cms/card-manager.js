@@ -72,7 +72,7 @@ window.CMS.CardManager = (function () {
 
       cardsHTML += `
         <div class="cms-item-card ${isPlaceholder ? 'is-placeholder' : ''}" data-index="${index}" data-id="${card.id}">
-          <img class="cms-item-card-thumb" src="${card.thumb}" alt="${card.title}" onerror="this.src='./assets/images/work001-01.jpg'">
+          <img class="cms-item-card-thumb" src="${window.CMS.MediaManager ? window.CMS.MediaManager.getPreviewUrl(card.thumb) : card.thumb}" alt="${card.title}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${card.thumb}';">
           <div class="cms-item-card-body">
             <div class="cms-item-card-num">${num}/${String(total).padStart(3, '0')}</div>
             <div class="cms-item-card-title">${escapeHtml(card.title)}</div>
@@ -145,7 +145,7 @@ window.CMS.CardManager = (function () {
       slide.forEach((card) => {
         html += `
           <div style="background: var(--cms-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--cms-border);">
-            <img src="${card.thumb}" style="width: 100%; aspect-ratio: 770/498; object-fit: cover; display: block;" onerror="this.src='./assets/images/work001-01.jpg'">
+            <img src="${window.CMS.MediaManager ? window.CMS.MediaManager.getPreviewUrl(card.thumb) : card.thumb}" style="width: 100%; aspect-ratio: 770/498; object-fit: cover; display: block;" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${card.thumb}';">
             <div style="padding: 8px;">
               <div style="font-size: 11px; color: var(--cms-text-muted);">${String(cards.indexOf(card) + 1).padStart(3, '0')}/${String(cards.length).padStart(3, '0')}</div>
               <div style="font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(card.title)}</div>
@@ -209,7 +209,7 @@ window.CMS.CardManager = (function () {
             <label class="cms-form-label">Thumbnail Image</label>
             <div style="display: flex; gap: 12px; align-items: flex-end;">
               <div>
-                <img id="card-edit-thumb-preview" src="${card.thumb}" style="width: 160px; aspect-ratio: 770/498; object-fit: cover; border-radius: 8px; border: 1px solid var(--cms-border);" onerror="this.src='./assets/images/work001-01.jpg'">
+                <img id="card-edit-thumb-preview" src="${window.CMS.MediaManager ? window.CMS.MediaManager.getPreviewUrl(card.thumb) : card.thumb}" style="width: 160px; aspect-ratio: 770/498; object-fit: cover; border-radius: 8px; border: 1px solid var(--cms-border);" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${card.thumb}';">
               </div>
               <div style="flex: 1;">
                 <input class="cms-form-input" id="card-edit-thumb" value="${card.thumb}">
@@ -242,7 +242,7 @@ window.CMS.CardManager = (function () {
         const input = document.getElementById('card-edit-thumb');
         const preview = document.getElementById('card-edit-thumb-preview');
         if (input) input.value = path;
-        if (preview) preview.src = path;
+        if (preview) preview.src = window.CMS.MediaManager ? window.CMS.MediaManager.getPreviewUrl(path) : path;
       });
     } else {
       window.CMS.toast('Media Manager belum dimuat', 'warning');
