@@ -172,7 +172,12 @@ window.CMS.GitHubAPI = (function() {
             
             // Add data.js
             if (window.CMS.state && window.CMS.state.data) {
-                const dataJsContent = generateDataJS(window.CMS.state.data);
+                // Build data.js content
+                let dataJsContent = generateDataJS(window.CMS.state.data) + '\n\n';
+                if (window.CMS.state && window.CMS.state.carouselCards) {
+                    dataJsContent += 'const cardData = ' + JSON.stringify(window.CMS.state.carouselCards, null, 2) + ';\n';
+                }
+
                 filesToCommit.push({
                     path: 'assets/js/data.js',
                     content: b64EncodeUnicode(dataJsContent)
