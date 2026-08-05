@@ -6,8 +6,8 @@ window.CMS.MediaManager = (function() {
     'japan.jpg', 'lpei.jpg', 'new_profile.jpg', 'p20.jpg', 'porto02-hover.jpg', 'profil.jpg',
     'project1.png', 'project1_screenshot.png', 'project2.png', 'project3.png', 'project4.png',
     'project4_screenshot.png', 'project5.png', 'project5_screenshot.png', 'project6.png',
-    'shinzo_abe.jpg', 'space.jpg', 'work001-01.jpg', 'work001-02.jpg', 'work001-03.jpg',
-    'work001-04.jpg', 'work01-hover.jpg', 'work02-hover.jpg', 'work03-hover.jpg'
+    'shinzo_abe.jpg', 'space - Copy.jpg', 'space.jpg', 'work001-01.jpg', 'work001-02.jpg', 'work001-03.jpg',
+    'work001-04.jpg', 'work01-hover - Copy.jpg', 'work01-hover.jpg', 'work02-hover.jpg', 'work03-hover.jpg'
   ];
 
   let pendingImages = [];
@@ -24,7 +24,7 @@ window.CMS.MediaManager = (function() {
     
     const newImgs = pendingImages.map(p => ({
       filename: p.filename,
-      path: p.dataUrl, // Use dataUrl for preview
+      path: `./assets/images/${p.filename}`,
       isNew: true
     }));
 
@@ -47,6 +47,34 @@ window.CMS.MediaManager = (function() {
     return [...new Set(usage)];
   }
 
+  function generateCanvasThumbnail(dataUrl, maxDim = 300, quality = 0.8, callback) {
+    const img = new Image();
+    img.onload = function() {
+      let width = img.width;
+      let height = img.height;
+      if (width > maxDim || height > maxDim) {
+        if (width > height) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      const thumbDataUrl = canvas.toDataURL('image/jpeg', quality);
+      callback(thumbDataUrl);
+    };
+    img.onerror = function() {
+      callback(dataUrl);
+    };
+    img.src = dataUrl;
+  }
+
   function handleFileUpload(file, callback) {
     if (!file.type.startsWith('image/')) {
       alert('Please upload an image file.');
@@ -56,15 +84,19 @@ window.CMS.MediaManager = (function() {
     const reader = new FileReader();
     reader.onload = function(e) {
       const dataUrl = e.target.result;
-      // Prevent duplicates by filename
-      pendingImages = pendingImages.filter(p => p.filename !== file.name);
-      pendingImages.push({
-        filename: file.name,
-        dataUrl: dataUrl,
-        file: file
+      generateCanvasThumbnail(dataUrl, 300, 0.8, function(thumbDataUrl) {
+        pendingImages = pendingImages.filter(p => p.filename !== file.name);
+        pendingImages.push({
+          filename: file.name,
+          path: `./assets/images/${file.name}`,
+          thumbPath: `./assets/images/thumbs/${file.name}`,
+          dataUrl: dataUrl,
+          thumbDataUrl: thumbDataUrl,
+          file: file
+        });
+        window.CMS.pendingImages = pendingImages;
+        if (callback) callback();
       });
-      window.CMS.pendingImages = pendingImages; // Sync globally if needed
-      if (callback) callback();
     };
     reader.readAsDataURL(file);
   }
@@ -142,9 +174,14 @@ window.CMS.MediaManager = (function() {
       }
 
       const imgEl = document.createElement('img');
-      imgEl.src = img.path;
+      imgEl.src = window.CMS.MediaManager ? window.CMS.MediaManager.getPreviewUrl(img.path) : img.path;
+      imgEl.loading = 'lazy';
+      imgEl.decoding = 'async';
       imgEl.title = img.filename;
-      imgEl.onerror = function() { this.src = './assets/images/work001-01.jpg'; };
+      imgEl.onerror = function() {
+        this.onerror = null;
+        this.src = img.path;
+      };
       
       const name = document.createElement('div');
       name.className = 'cms-media-item-name';
@@ -236,6 +273,21 @@ window.CMS.MediaManager = (function() {
   return {
     init: function() {
       window.CMS.pendingImages = pendingImages;
+    },
+    
+    getPreviewUrl: function(path) {
+      if (!path) return '';
+      if (path.startsWith('data:') || path.startsWith('http://') || path.startsWith('https://')) {
+        return path;
+      }
+      const filename = path.replace(/^\.\/assets\/images\//, '').replace(/^assets\/images\//, '');
+      
+      const pending = pendingImages.find(p => p.filename === filename);
+      if (pending && pending.thumbDataUrl) {
+        return pending.thumbDataUrl;
+      }
+      
+      return `./assets/images/thumbs/${filename}`;
     },
     
     render: function(container) {

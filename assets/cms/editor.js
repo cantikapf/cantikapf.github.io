@@ -538,6 +538,21 @@ window.CMS.Editor = (function () {
       html = generateContent(currentItem.sectionKey);
     }
 
+    if (html && window.CMS.MediaManager) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      tempDiv.querySelectorAll('img').forEach(img => {
+        const originalSrc = img.getAttribute('src');
+        if (originalSrc) {
+          img.setAttribute('src', window.CMS.MediaManager.getPreviewUrl(originalSrc));
+          img.setAttribute('loading', 'lazy');
+          img.setAttribute('decoding', 'async');
+          img.setAttribute('onerror', `this.onerror=null; this.src='${originalSrc}';`);
+        }
+      });
+      html = tempDiv.innerHTML;
+    }
+
     previewDiv.innerHTML = html || '<p style="color: #999;">Tidak ada konten untuk di-preview</p>';
   }
 

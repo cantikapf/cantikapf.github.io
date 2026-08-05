@@ -3,3 +3,5 @@ CV/
 *.bak
 
 .agents/
+node_modules/
+
