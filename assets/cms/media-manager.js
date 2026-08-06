@@ -50,24 +50,31 @@ window.CMS.MediaManager = (function() {
   function generateCanvasThumbnail(dataUrl, maxDim = 300, quality = 0.8, callback) {
     const img = new Image();
     img.onload = function() {
-      let width = img.width;
-      let height = img.height;
-      if (width > maxDim || height > maxDim) {
-        if (width > height) {
-          height = Math.round((height * maxDim) / width);
-          width = maxDim;
-        } else {
-          width = Math.round((width * maxDim) / height);
-          height = maxDim;
+      try {
+        let width = img.width;
+        let height = img.height;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
         }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          return callback(dataUrl);
+        }
+        ctx.drawImage(img, 0, 0, width, height);
+        const thumbDataUrl = canvas.toDataURL('image/jpeg', quality);
+        callback(thumbDataUrl);
+      } catch (err) {
+        callback(dataUrl);
       }
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, width, height);
-      const thumbDataUrl = canvas.toDataURL('image/jpeg', quality);
-      callback(thumbDataUrl);
     };
     img.onerror = function() {
       callback(dataUrl);
@@ -226,6 +233,7 @@ window.CMS.MediaManager = (function() {
             } else {
               deletedImages.push(img.filename);
             }
+            if (window.CMS.markChanged) window.CMS.markChanged();
             renderGrid(container, onSelect);
           }
         };
@@ -333,6 +341,10 @@ window.CMS.MediaManager = (function() {
     
     getDeletedImages: function() {
       return deletedImages;
+    },
+
+    clearDeletedImages: function() {
+      deletedImages = [];
     }
   };
 })();

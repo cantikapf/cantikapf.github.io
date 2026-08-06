@@ -23,8 +23,8 @@ The CMS editor (`admin.html`) and public portfolio website operate on static HTM
 ## Milestones
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
-| 1 | M1: CMS Low-Res Preview & Thumbnail Engine | Static thumbnail generation, CMS preview URL helper, `loading="lazy"` / `decoding="async"`, `renderGrid()` optimization, upload thumbnail export | None | IN_PROGRESS |
-| 2 | M2: Canonical Path Assignment & Public Site Preservation | Verification of `openPicker` original path assignment, `data.js` serialization integrity, and public site E2E quality check | M1 | PLANNED |
+| 1 | M1: CMS Low-Res Preview & Thumbnail Engine | Static thumbnail generation, CMS preview URL helper, `loading="lazy"` / `decoding="async"`, `renderGrid()` optimization, upload thumbnail export | None | DONE |
+| 2 | M2: Canonical Path Assignment & Public Site Preservation | Verification of `openPicker` original path assignment, `data.js` serialization integrity, and public site E2E quality check | M1 | DONE |
 
 ## Interface Contracts
 ### `CMS.MediaManager` API
