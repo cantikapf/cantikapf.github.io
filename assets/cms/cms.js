@@ -162,7 +162,11 @@ window.CMS.Core = (function () {
 
     // Update page visibility
     document.querySelectorAll('.cms-page').forEach(p => p.classList.remove('active'));
-    const targetPage = document.getElementById(`page-${page}`);
+    let targetPage = document.getElementById(`page-${page}`);
+    // Page editor pages share a single container
+    if (!targetPage && (page === 'page-about' || page === 'page-contact')) {
+      targetPage = document.getElementById('page-pageeditor');
+    }
     if (targetPage) {
       targetPage.classList.add('active');
     }
@@ -181,6 +185,10 @@ window.CMS.Core = (function () {
         breadcrumb.innerHTML = '<span>Export & Deploy</span>';
       } else if (page === 'auditlog') {
         breadcrumb.innerHTML = '<span>Audit Log</span>';
+      } else if (page === 'page-about') {
+        breadcrumb.innerHTML = '<span>Pages</span> <span>›</span> <span>👤 About Me</span>';
+      } else if (page === 'page-contact') {
+        breadcrumb.innerHTML = '<span>Pages</span> <span>›</span> <span>📧 Contact</span>';
       }
     }
 
@@ -207,6 +215,14 @@ window.CMS.Core = (function () {
     } else if (page === 'auditlog') {
       if (window.CMS.AuditLog) {
         window.CMS.AuditLog.render(document.getElementById('page-auditlog'));
+      }
+    } else if (page === 'page-about') {
+      if (window.CMS.PageEditor) {
+        window.CMS.PageEditor.render(document.getElementById('page-pageeditor'), 'about');
+      }
+    } else if (page === 'page-contact') {
+      if (window.CMS.PageEditor) {
+        window.CMS.PageEditor.render(document.getElementById('page-pageeditor'), 'contact');
       }
     }
   }
@@ -354,6 +370,17 @@ window.CMS.Core = (function () {
     html += `
       </div>
       <div class="cms-nav-section">
+        <div class="cms-nav-section-label">Pages</div>
+        <button class="cms-nav-item" data-page="page-about" onclick="CMS.Core.navigateTo('page-about')">
+          <span class="cms-nav-icon">👤</span>
+          About Me
+        </button>
+        <button class="cms-nav-item" data-page="page-contact" onclick="CMS.Core.navigateTo('page-contact')">
+          <span class="cms-nav-icon">📧</span>
+          Contact
+        </button>
+      </div>
+      <div class="cms-nav-section">
         <div class="cms-nav-section-label">Tools</div>
         <button class="cms-nav-item" data-page="media" onclick="CMS.Core.navigateTo('media')">
           <span class="cms-nav-icon">🖼️</span>
@@ -421,6 +448,7 @@ window.CMS.Core = (function () {
     if (window.CMS.Editor) window.CMS.Editor.init();
     if (window.CMS.GitHubAPI) window.CMS.GitHubAPI.init();
     if (window.CMS.AuditLog) window.CMS.AuditLog.init();
+    if (window.CMS.PageEditor) window.CMS.PageEditor.init();
 
     // Navigate to dashboard
     navigateTo('dashboard');

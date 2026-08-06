@@ -152,6 +152,40 @@ window.CMS.GitHubAPI = (function() {
                 }
             }
         }
+
+        // Generate about.html and contact.html from page editor
+        if (window.CMS.state && window.CMS.state.pages) {
+            for (const pageKey of ['about', 'contact']) {
+                const pageData = window.CMS.state.pages[pageKey];
+                if (pageData && pageData.content) {
+                    const filename = pageKey === 'about' ? 'about.html' : 'contact.html';
+                    const startMarker = `<!--cms-${pageKey}-content-->`;
+                    const endMarker = `<!--/cms-${pageKey}-content-->`;
+                    
+                    // Fetch template if needed
+                    if (!window.CMS.state.htmlTemplates[pageKey]) {
+                        try {
+                            const res = await fetch(`./${filename}?v=${Date.now()}`);
+                            if (res.ok) {
+                                window.CMS.state.htmlTemplates[pageKey] = await res.text();
+                            }
+                        } catch (e) {
+                            console.error(`Failed to fetch ${filename}`, e);
+                        }
+                    }
+                    
+                    if (window.CMS.state.htmlTemplates[pageKey]) {
+                        let template = window.CMS.state.htmlTemplates[pageKey];
+                        if (template.includes(startMarker) && template.includes(endMarker)) {
+                            const before = template.split(startMarker)[0];
+                            const after = template.split(endMarker)[1];
+                            files[filename] = before + startMarker + '\n' + pageData.content + '\n' + endMarker + after;
+                        }
+                    }
+                }
+            }
+        }
+
         return files;
     }
 
