@@ -306,7 +306,65 @@ window.CMS.GitHubAPI = (function() {
                 commitSuccessCount++;
             }
 
-            if (window.CMS.toast) window.CMS.toast(`Successfully pushed ${commitSuccessCount} files to GitHub! 🚀`, 'success');
+            // Delete images marked for deletion
+            let deleteSuccessCount = 0;
+            if (window.CMS.MediaManager && typeof window.CMS.MediaManager.getDeletedImages === 'function') {
+                const deletedImages = window.CMS.MediaManager.getDeletedImages();
+                for (const filename of deletedImages) {
+                    // Delete the original image
+                    const origPath = `assets/images/${filename}`;
+                    try {
+                        const origFile = await apiRequest(`/contents/${origPath}?ref=${BRANCH}`);
+                        await apiRequest(`/contents/${origPath}`, {
+                            method: 'DELETE',
+                            body: JSON.stringify({
+                                message: `cms: Delete ${filename}`,
+                                sha: origFile.sha,
+                                branch: BRANCH
+                            })
+                        });
+                        deleteSuccessCount++;
+                    } catch (e) {
+                        // File might already be gone, ignore 404
+                        if (e.message.indexOf('404') === -1) {
+                            console.error(`Failed to delete ${origPath}:`, e);
+                        }
+                    }
+
+                    // Also delete the thumbnail if it exists
+                    const thumbPath = `assets/images/thumbs/${filename}`;
+                    try {
+                        const thumbFile = await apiRequest(`/contents/${thumbPath}?ref=${BRANCH}`);
+                        await apiRequest(`/contents/${thumbPath}`, {
+                            method: 'DELETE',
+                            body: JSON.stringify({
+                                message: `cms: Delete thumbnail ${filename}`,
+                                sha: thumbFile.sha,
+                                branch: BRANCH
+                            })
+                        });
+                        deleteSuccessCount++;
+                    } catch (e) {
+                        // Thumbnail might not exist, ignore 404
+                        if (e.message.indexOf('404') === -1) {
+                            console.error(`Failed to delete ${thumbPath}:`, e);
+                        }
+                    }
+                }
+
+                // Clear the deleted images list after successful deletion
+                if (typeof window.CMS.MediaManager.clearDeletedImages === 'function') {
+                    window.CMS.MediaManager.clearDeletedImages();
+                }
+            }
+
+            const totalActions = commitSuccessCount + deleteSuccessCount;
+            let successMsg = `Successfully pushed ${commitSuccessCount} files`;
+            if (deleteSuccessCount > 0) {
+                successMsg += ` and deleted ${deleteSuccessCount} files`;
+            }
+            successMsg += ' to GitHub! 🚀';
+            if (window.CMS.toast) window.CMS.toast(successMsg, 'success');
             
             // Clear pending changes state
             if (window.CMS.state) {
