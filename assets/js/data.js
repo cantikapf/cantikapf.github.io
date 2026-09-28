@@ -9,12 +9,12 @@ const portfolioData = {
       "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">001 : English Proficiency Online Test</h1>\r\n            <br>\r\n            <br>\r\n            <br>\r\n            <br>\r\n            <iframe src=\"https://drive.google.com/file/d/1l3zWyVflEebpOpBHQNXAftUO_ulLek69/preview\" width=\"850\" height=\"950\" allow=\"autoplay\"></iframe>\r\n    </div>\r\n  </div>\r\n</div>"
     },
     "certification2": {
-      "title": "002 : Coming soon",
-      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">002 : Coming soon</h1>\r\n\r\n    </div>\r\n  </div>\r\n</div>"
+      "title": "002 : IELTS Academic (Overall 6.0)",
+      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">002 : IELTS Academic (Overall 6.0)</h1>\r\n            <br>\r\n            <br>\r\n            <p>\r\n              <b>Issuing Organization:</b> IDP IELTS<br>\r\n              <b>Issue Date:</b> Dec 2024<br>\r\n              <b>Credential ID:</b> 24ID002658FEBC017A<br>\r\n              <b>Score:</b> Overall 6.0\r\n            </p>\r\n            <br>\r\n            <b>International English Language Testing System (IELTS) Academic assesses English language proficiency for academic, higher education, and professional global environments.</b>\r\n            <br><br>\r\n          </div>\r\n        </div>"
     },
     "certification3": {
-      "title": "003 : Coming soon",
-      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">003 : Coming soon</h1>\r\n\r\n    </div>\r\n  </div>\r\n</div>"
+      "title": "003 : Japanese-Language Proficiency Test (JLPT) N5",
+      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">003 : Japanese-Language Proficiency Test (JLPT) N5</h1>\r\n            <br>\r\n            <br>\r\n            <p>\r\n              <b>Issuing Organization:</b> The Japan Foundation<br>\r\n              <b>Issue Date:</b> Jul 2026<br>\r\n              <b>Credential ID:</b> 26A2011501-50389<br>\r\n              <b>Level:</b> N5 (Elementary Proficiency)\r\n            </p>\r\n            <br>\r\n            <b>The Japanese-Language Proficiency Test (JLPT) is the official standardized examination evaluating and certifying Japanese language proficiency for non-native speakers worldwide.</b>\r\n            <br><br>\r\n          </div>\r\n        </div>"
     },
     "certification4": {
       "title": "004 : Coming soon",
@@ -55,8 +55,20 @@ const portfolioData = {
       "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">005 : PT Bank Mandiri (Persero) Tbk.</h1>\r\n            <br>\r\n            <br>\r\n            <div class= col-xs-12>\r\n              <img src=\"./assets/images/bank-mandiri.jpg\" class=\"img-responsive\" alt=\"\"\r\n              width=\"100%\" \r\n              height=\"100%\">\r\n              <p>Source: <a href=\"https://lifepal.co.id/media/bank-mandiri/\">Lifepal</a> </p>\r\n            </div>\r\n            <br>\r\n            <p>\r\n              <b>Position:</b> Area Tangerang Bintaro Transaction Funding Intern<br>\r\n              <b>Duration:</b> Sep 2025 - Nov 2025<br>\r\n              <b>Location:</b> Tangerang Selatan, Indonesia\r\n            </p>\r\n            <br>\r\n          </div>\r\n          <div class=\"\">\r\n            <h3 class=\"template-title-example\">Work Portfolio</h3>\r\n            <ol>\r\n              <li>Assisted in monitoring and analyzing savings and current account data, resulting in a 15% improvement in area business performance.</li>\r\n              <li>Prepared and managed Branch Business Case reports, ensuring 100% data accuracy and providing strategic insights for decision-making.</li>\r\n              <li>Supported the promotion and education of digital banking products through outreach programs, reaching over 500 participants in schools and public events.</li>\r\n              <li>Contributed to creating promotional materials and collaborated with partners, enhancing financial inclusion efforts and increasing service adoption by 20% in the Tangerang Selatan area.</li>\r\n            </ol>\r\n          </div>\r\n        </div>"
     },
     "experience6": {
-      "title": "006 : Coming soon",
-      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">006 : Coming soon</h1>\r\n\r\n    </div>\r\n  </div>\r\n</div>"
+      "title": "006 : FlyRank AI",
+      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">006 : FlyRank AI</h1>\r\n            <br>\r\n            <br>\r\n            <p>\r\n              <b>Position:</b> AI Marketing Intern<br>\r\n              <b>Duration:</b> Jun 2026 - Aug 2026<br>\r\n              <b>Location:</b> Jakarta, Indonesia (Remote)\r\n            </p>\r\n            <br>\r\n            <b>FlyRank is an agentic AI search growth platform and marketing automation technology company, empowering businesses to maximize visibility across modern search and AI discovery engines.</b>\r\n            <br><br>\r\n            <div class=\"col-xs-12\">\r\n              <img src=\"./assets/images/flyrank.jpg\" class=\"img-responsive\" alt=\"FlyRank AI\" width=\"100%\" height=\"100%\">\r\n              <p>Source: <a href=\"https://flyrank.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">FlyRank AI</a></p>\r\n            </div>\r\n            <br>\r\n            <p>\r\n              During my AI Marketing Internship at FlyRank AI, I assisted in developing innovative and effective AI marketing strategies tailored for generative AI engines and search visibility. I collaborated on data-driven marketing campaigns designed to scale organic brand awareness and optimize customer conversion pathways in an AI-native ecosystem.\r\n            </p>\r\n            <br>\r\n          </div>\r\n          <div class=\"\">\r\n            <h3 class=\"template-title-example\">Work Portfolio</h3>\r\n            <ol>\r\n              <li>Assisted in developing innovative and effective AI marketing strategies, enhancing brand awareness and customer conversion through targeted and data-driven marketing campaigns.</li>\r\n            </ol>\r\n          </div>\r\n        </div>"
+    },
+    "experience7": {
+      "title": "007 : LSP MSDM Analitik",
+      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">007 : LSP MSDM Analitik</h1>\r\n            <br>\r\n            <br>\r\n            <p>\r\n              <b>Position:</b> Digital Marketing Intern<br>\r\n              <b>Duration:</b> Aug 2026 - Present<br>\r\n              <b>Location:</b> Jakarta, Indonesia\r\n            </p>\r\n            <br>\r\n            <b>LSP MSDM Analitik is an accredited professional certification body (Lisensi BNSP: KEP.1342/BNSP/VII/2021) specializing in competency certification for analytics-based Human Resource Management.</b>\r\n            <br><br>\r\n            <div class=\"col-xs-12\">\r\n              <img src=\"./assets/images/lsp-msdm.jpg\" class=\"img-responsive\" alt=\"LSP MSDM Analitik\" width=\"100%\" height=\"100%\">\r\n              <p>Source: <a href=\"https://lspmsdm-analitik.com/media\" target=\"_blank\" rel=\"noopener noreferrer\">LSP MSDM Analitik Media</a></p>\r\n            </div>\r\n            <br>\r\n            <p>\r\n              As a Digital Marketing Intern at LSP MSDM Analitik, I spearhead the creation and strategy of digital social media campaigns, author official coverage for the organization's media portal, and provide live technical support for certification candidates during competency assessment sessions.\r\n            </p>\r\n            <br>\r\n          </div>\r\n          <div class=\"\">\r\n            <h3 class=\"template-title-example\">Work Portfolio</h3>\r\n            <ol>\r\n              <li>Developed and designed strategic social media content across Instagram, LinkedIn, and Facebook (<a href=\"https://drive.google.com/drive/folders/17f0Fa7RPILgMoyNfjxGKF-o7WeZB-LjX?usp=drive_link\" target=\"_blank\" rel=\"noopener noreferrer\">View Content Planning</a>), increasing audience reach and brand engagement.</li>\r\n              <li>Delivered responsive helpdesk support to troubleshoot and resolve technical assessment issues for participants, ensuring seamless evaluation sessions.</li>\r\n              <li>Authored and published official news articles and editorial coverage on the <a href=\"https://lspmsdm-analitik.com/media\" target=\"_blank\" rel=\"noopener noreferrer\">LSP MSDM Analitik Media</a> portal, driving website traffic and organizational transparency.</li>\r\n            </ol>\r\n          </div>\r\n        </div>"
+    },
+    "experience8": {
+      "title": "008 : Coming soon",
+      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">008 : Coming soon</h1>\r\n    </div>\r\n  </div>\r\n</div>"
+    },
+    "experience9": {
+      "title": "009 : Coming soon",
+      "content": "<img src=\"./assets/images/work001-01.jpg\" class=\"img-responsive\" alt=\"\">\r\n        <div class=\"card-container\">\r\n          <div class=\"text-center\">\r\n            <h1 class=\"h2\">009 : Coming soon</h1>\r\n    </div>\r\n  </div>\r\n</div>"
     }
   },
   "projects": {
@@ -175,17 +187,36 @@ const cardData = {
     {
       "id": "experience4",
       "title": "PT Sumberdaya Andalan Mandiri",
-      "subtitle": "Aug 2023 - Jan 2025",
+      "subtitle": "Jun 2023 - Apr 2024",
       "thumb": "./assets/images/work001-01.jpg"
     },
     {
       "id": "experience5",
       "title": "PT Bank Mandiri (Persero) Tbk.",
-      "subtitle": "Apr 2025 - Jul 2025",
+      "subtitle": "Sep 2025 - Nov 2025",
       "thumb": "./assets/images/bank-mandiri.jpg"
     },
     {
       "id": "experience6",
+      "title": "FlyRank AI",
+      "subtitle": "Jun 2026 - Aug 2026",
+      "thumb": "./assets/images/flyrank.jpg"
+    },
+    {
+      "id": "experience7",
+      "title": "LSP MSDM Analitik",
+      "subtitle": "Aug 2026 - Present",
+      "thumb": "./assets/images/lsp-msdm.jpg"
+    },
+    {
+      "id": "experience8",
+      "title": "Coming soon.",
+      "subtitle": "-",
+      "thumb": "./assets/images/coming-soon.jpg",
+      "placeholder": true
+    },
+    {
+      "id": "experience9",
       "title": "Coming soon.",
       "subtitle": "-",
       "thumb": "./assets/images/coming-soon.jpg",
@@ -240,17 +271,15 @@ const cardData = {
     },
     {
       "id": "certification2",
-      "title": "Coming soon.",
-      "subtitle": "-",
-      "thumb": "./assets/images/coming-soon.jpg",
-      "placeholder": true
+      "title": "IELTS Academic (Overall 6.0)",
+      "subtitle": "Dec 2024",
+      "thumb": "./assets/images/work001-01.jpg"
     },
     {
       "id": "certification3",
-      "title": "Coming soon.",
-      "subtitle": "-",
-      "thumb": "./assets/images/coming-soon.jpg",
-      "placeholder": true
+      "title": "Japanese-Language Proficiency Test (JLPT) N5",
+      "subtitle": "Jul 2026",
+      "thumb": "./assets/images/work001-01.jpg"
     },
     {
       "id": "certification4",
