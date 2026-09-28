@@ -3,7 +3,7 @@ window.CMS = window.CMS || {};
 window.CMS.MediaManager = (function() {
   const knownImages = [
     'bank-mandiri.jpg', 'coming-soon.jpg', 'dpr-ri.jpg', 'dpr-ri2.jpg', 'experience-01.jpg',
-    'flyrank.jpg', 'japan.jpg', 'lpei.jpg', 'lsp-msdm.jpg', 'new_profile.jpg', 'p20.jpg', 'porto02-hover.jpg', 'profil.jpg',
+    'flyrank.jpg', 'japan.jpg', 'jlpt_n5.jpg', 'jlpt_n5_certificate.png', 'lpei.jpg', 'lsp-msdm.jpg', 'new_profile.jpg', 'p20.jpg', 'porto02-hover.jpg', 'profil.jpg',
     'project1.png', 'project1_screenshot.png', 'project2.png', 'project3.png', 'project4.png',
     'project4_screenshot.png', 'project5.png', 'project5_screenshot.png', 'project6.png',
     'shinzo_abe.jpg', 'space - Copy.jpg', 'space.jpg', 'work001-01.jpg', 'work001-02.jpg', 'work001-03.jpg',
